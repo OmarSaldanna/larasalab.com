@@ -1,26 +1,154 @@
 @import "tailwindcss";
 
+/* ===== Brand Color Palette ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --color-amber: #FDA303;
+  --color-pink: #ED2D4C;
+  --color-black: #05051B;
+  --color-blue: #178EC5;
+  --color-cream: #FFF5DF;
+
+  /* Light Theme */
+  --background: #FFF5DF;
+  --foreground: #05051B;
+  --surface: #FFFFFF;
+  --surface-elevated: #FFFAF0;
+  --muted: #F5EDD8;
+  --muted-foreground: #6B6B7B;
+  --border: rgba(5, 5, 27, 0.1);
+
+  /* Circuit colors */
+  --circuit-line: rgba(5, 5, 27, 0.08);
+  --circuit-node: rgba(5, 5, 27, 0.15);
+  --circuit-active: var(--color-amber);
 }
 
+.dark {
+  /* Dark Theme */
+  --background: #05051B;
+  --foreground: #FFF5DF;
+  --surface: #0D0D2B;
+  --surface-elevated: #151540;
+  --muted: #1A1A45;
+  --muted-foreground: #9B9BAB;
+  --border: rgba(255, 245, 223, 0.1);
+
+  /* Circuit colors (dark mode) */
+  --circuit-line: rgba(255, 245, 223, 0.06);
+  --circuit-node: rgba(255, 245, 223, 0.12);
+  --circuit-active: var(--color-amber);
+}
+
+/* ===== Tailwind Theme Integration ===== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  --color-amber: var(--color-amber);
+  --color-pink: var(--color-pink);
+  --color-blue: var(--color-blue);
+  --color-cream: var(--color-cream);
+
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* ===== Theme Transition ===== */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ===== Diagonal Section Clip Paths ===== */
+.clip-diagonal-top {
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+}
+
+.clip-diagonal-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+}
+
+.clip-diagonal-both {
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+}
+
+/* ===== Circuit Pattern Animations ===== */
+@keyframes circuit-pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes circuit-flow {
+  0% {
+    stroke-dashoffset: 100;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-circuit-pulse {
+  animation: circuit-pulse 3s ease-in-out infinite;
+}
+
+.animate-circuit-flow {
+  animation: circuit-flow 2s linear infinite;
+}
+
+/* ===== 3D Cube Styles ===== */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--color-amber);
+  color: var(--color-black);
+}
+
+/* ===== Scrollbar (subtle) ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
 }
