@@ -36,8 +36,8 @@ export function ThemeToggle() {
                     strokeWidth="2"
                     strokeLinejoin="round"
                     animate={{
-                        fill: isLight ? '#FDA303' : 'transparent',
-                        stroke: isLight ? '#FDA303' : 'currentColor',
+                        fill: 'currentColor',
+                        stroke: 'currentColor',
                     }}
                     transition={{ duration: 0.3 }}
                     className="text-foreground"
@@ -50,7 +50,7 @@ export function ThemeToggle() {
                     width="4"
                     height="24"
                     animate={{
-                        fill: isLight ? '#FDA303' : 'currentColor',
+                        fill: 'currentColor',
                     }}
                     transition={{ duration: 0.3 }}
                     className="text-foreground"
@@ -64,14 +64,14 @@ export function ThemeToggle() {
                     height="6"
                     rx="2"
                     animate={{
-                        fill: isLight ? '#FDA303' : 'currentColor',
+                        fill: 'currentColor',
                     }}
                     transition={{ duration: 0.3 }}
                     className="text-foreground"
                 />
 
-                {/* Light glow effect when on */}
-                {isLight && (
+                {/* Light glow effect when on (Dark Mode) */}
+                {!isLight && (
                     <motion.ellipse
                         cx="24"
                         cy="16"
@@ -79,8 +79,8 @@ export function ThemeToggle() {
                         ry="14"
                         fill="#FDA303"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.3 }}
-                        style={{ filter: 'blur(12px)' }}
+                        animate={{ opacity: 0.5 }}
+                        style={{ filter: 'blur(8px)' }}
                     />
                 )}
             </motion.svg>
