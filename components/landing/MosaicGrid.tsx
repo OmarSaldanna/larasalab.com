@@ -36,11 +36,24 @@ export function MosaicGrid({ projects, ideas }: MosaicGridProps) {
                 <motion.div
                     key={`${row}-${col}`}
                     className={`flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl border-2 ${colorClasses[diagonalItem.color as keyof typeof colorClasses]} shadow-lg`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{
+                        opacity: 1,
+                        scale: 1,
+                        transition: { duration: 0.5, delay: row * 0.1 }
+                    }}
+                    animate={{
+                        scale: [1, 1.05, 1],
+                    }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                        delay: row * 1.5, // Stagger the pulsing effect
+                        ease: "easeInOut"
+                    }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: row * 0.1 }}
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                 >
                     <Icon className="w-10 h-10 md:w-14 md:h-14 mb-3" strokeWidth={1.5} />
                     <span className="text-xs md:text-sm font-bold text-center uppercase tracking-wider">

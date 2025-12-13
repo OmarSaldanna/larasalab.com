@@ -39,14 +39,13 @@ export function RotatingCube({ size = 40, className = '' }: RotatingCubeProps) {
                     ease: "linear"
                 }}
             >
-                {/* Cube faces with gradient colors */}
+                {/* Cube faces with monochrome colors to match text */}
                 <div
                     style={{
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '1.5px solid',
-                        borderColor: '#FDA303',
+                        border: '1.5px solid currentColor',
                         opacity: 0.8,
                         transform: `translateZ(${half}px)`,
                         borderRadius: '2px',
@@ -57,8 +56,7 @@ export function RotatingCube({ size = 40, className = '' }: RotatingCubeProps) {
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '1.5px solid',
-                        borderColor: '#ED2D4C',
+                        border: '1.5px solid currentColor',
                         opacity: 0.6,
                         transform: `rotateY(180deg) translateZ(${half}px)`,
                         borderRadius: '2px',
@@ -69,8 +67,7 @@ export function RotatingCube({ size = 40, className = '' }: RotatingCubeProps) {
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '1.5px solid',
-                        borderColor: '#178EC5',
+                        border: '1.5px solid currentColor',
                         opacity: 0.7,
                         transform: `rotateY(90deg) translateZ(${half}px)`,
                         borderRadius: '2px',
@@ -81,8 +78,7 @@ export function RotatingCube({ size = 40, className = '' }: RotatingCubeProps) {
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '1.5px solid',
-                        borderColor: '#178EC5',
+                        border: '1.5px solid currentColor',
                         opacity: 0.7,
                         transform: `rotateY(-90deg) translateZ(${half}px)`,
                         borderRadius: '2px',
@@ -93,8 +89,7 @@ export function RotatingCube({ size = 40, className = '' }: RotatingCubeProps) {
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '1.5px solid',
-                        borderColor: '#FDA303',
+                        border: '1.5px solid currentColor',
                         opacity: 0.7,
                         transform: `rotateX(90deg) translateZ(${half}px)`,
                         borderRadius: '2px',
@@ -105,8 +100,7 @@ export function RotatingCube({ size = 40, className = '' }: RotatingCubeProps) {
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '1.5px solid',
-                        borderColor: '#ED2D4C',
+                        border: '1.5px solid currentColor',
                         opacity: 0.7,
                         transform: `rotateX(-90deg) translateZ(${half}px)`,
                         borderRadius: '2px',

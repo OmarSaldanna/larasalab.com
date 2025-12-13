@@ -16,15 +16,15 @@ export function HeroSection() {
                 >
                     {/* Title with cube as superscript */}
                     <motion.h1
-                        className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight flex items-start justify-center md:justify-start gap-2"
+                        className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight flex items-start justify-center md:justify-start gap-4 text-foreground"
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <span className="bg-gradient-to-r from-amber via-pink to-blue bg-clip-text text-transparent">
-                            larasalab
+                        <span>
+                            Larasalab
                         </span>
-                        <RotatingCube size={36} className="mt-1" />
+                        <RotatingCube size={50} className="mt-2" />
                     </motion.h1>
 
                     <motion.p
