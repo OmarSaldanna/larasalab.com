@@ -75,8 +75,8 @@ export default async function Home() {
           background="default"
           diagonal="bottom"
         >
-          <div className="max-w-4xl mx-auto px-8 md:px-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">
               Explore <span className="text-amber">Ideas</span> & <span className="text-blue">Projects</span>
             </h2>
             <MosaicGrid projects={projects} ideas={ideas} />

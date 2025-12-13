@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export function ThemeToggle() {
@@ -13,136 +13,80 @@ export function ThemeToggle() {
     }, []);
 
     if (!mounted) {
-        return (
-            <div className="fixed top-6 right-6 z-50 w-14 h-14" />
-        );
+        return null;
     }
 
     const isLight = theme === 'light';
 
     return (
-        <motion.button
+        <button
             onClick={() => setTheme(isLight ? 'dark' : 'light')}
-            className="fixed top-6 right-6 z-50 w-14 h-14 flex items-center justify-center rounded-full bg-surface border border-border hover:bg-surface-elevated transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
+            className="fixed top-6 right-6 z-50 p-3 rounded-full hover:bg-muted/50 transition-colors"
+            aria-label="Toggle theme"
         >
-            <svg
-                viewBox="0 0 48 48"
-                className="w-8 h-8"
+            <motion.svg
+                viewBox="0 0 64 64"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                className="w-10 h-10"
+                initial={false}
             >
                 {/* Lamp base */}
-                <motion.rect
-                    x="18"
-                    y="40"
-                    width="12"
-                    height="4"
-                    rx="1"
-                    className="fill-foreground"
-                />
+                <rect x="24" y="56" width="16" height="4" rx="2" className="fill-foreground" />
 
                 {/* Lamp stand */}
-                <motion.rect
-                    x="22"
-                    y="28"
-                    width="4"
-                    height="12"
-                    className="fill-foreground"
-                />
+                <rect x="30" y="40" width="4" height="16" className="fill-foreground" />
 
-                {/* Lamp arm (angled) */}
-                <motion.path
-                    d="M24 28 L24 20 L16 12"
+                {/* Lamp arm (diagonal) */}
+                <motion.line
+                    x1="32"
+                    y1="40"
+                    x2="20"
+                    y2="24"
                     className="stroke-foreground"
                     strokeWidth="3"
                     strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
                 />
 
-                {/* Lamp shade */}
+                {/* Lamp head (shade) */}
                 <motion.path
-                    d="M8 12 L16 12 L20 4 L4 4 Z"
+                    d="M 10 24 L 20 24 L 24 14 L 6 14 Z"
                     className="fill-foreground"
                 />
 
-                {/* Light beam (visible when light mode) */}
-                <AnimatePresence>
-                    {isLight && (
-                        <motion.g
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.5 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            {/* Light cone */}
-                            <motion.path
-                                d="M4 8 L-4 24 L28 24 L20 8"
-                                fill="url(#lightGradient)"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 0.6 }}
-                                exit={{ opacity: 0 }}
-                            />
+                {/* Light glow - only visible when light mode */}
+                <motion.circle
+                    cx="15"
+                    cy="19"
+                    r="12"
+                    fill="#FDA303"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{
+                        opacity: isLight ? 0.4 : 0,
+                        scale: isLight ? 1 : 0.5
+                    }}
+                    transition={{ duration: 0.3 }}
+                    style={{ filter: 'blur(8px)' }}
+                />
 
-                            {/* Light rays */}
-                            {[0, 1, 2].map((i) => (
-                                <motion.line
-                                    key={i}
-                                    x1={8 + i * 4}
-                                    y1="8"
-                                    x2={4 + i * 6}
-                                    y2="22"
-                                    className="stroke-amber"
-                                    strokeWidth="1"
-                                    strokeLinecap="round"
-                                    initial={{ pathLength: 0, opacity: 0 }}
-                                    animate={{
-                                        pathLength: 1,
-                                        opacity: [0.3, 0.7, 0.3],
-                                    }}
-                                    exit={{ pathLength: 0, opacity: 0 }}
-                                    transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
-                                        delay: i * 0.2
-                                    }}
-                                />
-                            ))}
-                        </motion.g>
-                    )}
-                </AnimatePresence>
+                {/* Light cone - only visible when light mode */}
+                <motion.path
+                    d="M 6 18 L 0 40 L 30 40 L 24 18"
+                    fill="#FDA303"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isLight ? 0.15 : 0 }}
+                    transition={{ duration: 0.3 }}
+                />
 
-                {/* Light glow */}
-                <AnimatePresence>
-                    {isLight && (
-                        <motion.circle
-                            cx="12"
-                            cy="6"
-                            r="8"
-                            fill="url(#glowGradient)"
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 0.8, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0 }}
-                            transition={{ duration: 0.4 }}
-                        />
-                    )}
-                </AnimatePresence>
-
-                {/* Gradients */}
-                <defs>
-                    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="#FDA303" stopOpacity="0.8" />
-                        <stop offset="100%" stopColor="#FDA303" stopOpacity="0" />
-                    </radialGradient>
-                    <linearGradient id="lightGradient" x1="12" y1="8" x2="12" y2="24" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#FDA303" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#FDA303" stopOpacity="0" />
-                    </linearGradient>
-                </defs>
-            </svg>
-        </motion.button>
+                {/* Small light indicator on the bulb */}
+                <motion.circle
+                    cx="15"
+                    cy="18"
+                    r="3"
+                    initial={{ fill: '#666' }}
+                    animate={{ fill: isLight ? '#FDA303' : '#666' }}
+                    transition={{ duration: 0.2 }}
+                />
+            </motion.svg>
+        </button>
     );
 }

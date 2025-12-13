@@ -6,7 +6,17 @@ import { RotatingCube } from '@/components/ui/RotatingCube';
 export function HeroSection() {
     return (
         <section className="relative min-h-screen flex items-center justify-center px-8 md:px-16 lg:px-24 overflow-hidden">
-            <div className="max-w-5xl w-full flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* Rotating Cube - positioned top-right as per user request */}
+            <motion.div
+                className="absolute top-24 right-16 md:right-24 lg:right-32"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+            >
+                <RotatingCube size={220} />
+            </motion.div>
+
+            <div className="max-w-5xl w-full flex flex-col items-center md:items-start gap-8">
                 {/* Text content */}
                 <motion.div
                     className="flex-1 text-center md:text-left"
@@ -53,16 +63,6 @@ export function HeroSection() {
                             <span>Cloud Development</span>
                         </div>
                     </motion.div>
-                </motion.div>
-
-                {/* Rotating Cube */}
-                <motion.div
-                    className="flex-shrink-0"
-                    initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                >
-                    <RotatingCube size={120} />
                 </motion.div>
             </div>
 
