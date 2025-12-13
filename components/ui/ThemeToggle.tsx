@@ -21,71 +21,68 @@ export function ThemeToggle() {
     return (
         <button
             onClick={() => setTheme(isLight ? 'dark' : 'light')}
-            className="fixed top-6 right-6 z-50 p-3 rounded-full hover:bg-muted/50 transition-colors"
+            className="fixed top-6 right-6 z-50 p-2 rounded-xl hover:bg-muted/50 transition-colors"
             aria-label="Toggle theme"
         >
             <motion.svg
-                viewBox="0 0 64 64"
+                viewBox="0 0 48 64"
                 fill="none"
-                className="w-10 h-10"
+                className="w-8 h-10"
                 initial={false}
             >
-                {/* Lamp base */}
-                <rect x="24" y="56" width="16" height="4" rx="2" className="fill-foreground" />
-
-                {/* Lamp stand */}
-                <rect x="30" y="40" width="4" height="16" className="fill-foreground" />
-
-                {/* Lamp arm (diagonal) */}
-                <motion.line
-                    x1="32"
-                    y1="40"
-                    x2="20"
-                    y2="24"
-                    className="stroke-foreground"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                />
-
-                {/* Lamp head (shade) */}
+                {/* Lamp shade (trapezoid) */}
                 <motion.path
-                    d="M 10 24 L 20 24 L 24 14 L 6 14 Z"
-                    className="fill-foreground"
-                />
-
-                {/* Light glow - only visible when light mode */}
-                <motion.circle
-                    cx="15"
-                    cy="19"
-                    r="12"
-                    fill="#FDA303"
-                    initial={{ opacity: 0, scale: 0.5 }}
+                    d="M 8 28 L 40 28 L 36 4 L 12 4 Z"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
                     animate={{
-                        opacity: isLight ? 0.4 : 0,
-                        scale: isLight ? 1 : 0.5
+                        fill: isLight ? '#FDA303' : 'transparent',
+                        stroke: isLight ? '#FDA303' : 'currentColor',
                     }}
                     transition={{ duration: 0.3 }}
-                    style={{ filter: 'blur(8px)' }}
+                    className="text-foreground"
                 />
 
-                {/* Light cone - only visible when light mode */}
-                <motion.path
-                    d="M 6 18 L 0 40 L 30 40 L 24 18"
-                    fill="#FDA303"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isLight ? 0.15 : 0 }}
+                {/* Lamp stand (vertical) */}
+                <motion.rect
+                    x="22"
+                    y="28"
+                    width="4"
+                    height="24"
+                    animate={{
+                        fill: isLight ? '#FDA303' : 'currentColor',
+                    }}
                     transition={{ duration: 0.3 }}
+                    className="text-foreground"
                 />
 
-                {/* Small light indicator on the bulb */}
-                <motion.circle
-                    cx="15"
-                    cy="18"
-                    r="3"
-                    initial={{ fill: '#666' }}
-                    animate={{ fill: isLight ? '#FDA303' : '#666' }}
-                    transition={{ duration: 0.2 }}
+                {/* Lamp base */}
+                <motion.rect
+                    x="14"
+                    y="52"
+                    width="20"
+                    height="6"
+                    rx="2"
+                    animate={{
+                        fill: isLight ? '#FDA303' : 'currentColor',
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="text-foreground"
                 />
+
+                {/* Light glow effect when on */}
+                {isLight && (
+                    <motion.ellipse
+                        cx="24"
+                        cy="16"
+                        rx="20"
+                        ry="14"
+                        fill="#FDA303"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.3 }}
+                        style={{ filter: 'blur(12px)' }}
+                    />
+                )}
             </motion.svg>
         </button>
     );

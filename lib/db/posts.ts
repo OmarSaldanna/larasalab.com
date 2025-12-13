@@ -28,7 +28,7 @@ export async function getActiveIdeas(limit = 3): Promise<Post[]> {
     const rows = await query<PostRow>(
         `SELECT id, created_at, title, type, status, content 
      FROM posts 
-     WHERE type = 'idea' AND status = 'active'
+     WHERE type = 'idea'
      ORDER BY created_at DESC 
      LIMIT $1`,
         [limit]
@@ -43,7 +43,7 @@ export async function getActiveProjects(limit = 3): Promise<Post[]> {
     const rows = await query<PostRow>(
         `SELECT id, created_at, title, type, status, content 
      FROM posts 
-     WHERE type = 'project' AND status = 'active'
+     WHERE type = 'project'
      ORDER BY created_at DESC 
      LIMIT $1`,
         [limit]

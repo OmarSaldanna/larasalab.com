@@ -7,19 +7,20 @@ interface RotatingCubeProps {
     className?: string;
 }
 
-export function RotatingCube({ size = 200, className = '' }: RotatingCubeProps) {
+export function RotatingCube({ size = 40, className = '' }: RotatingCubeProps) {
     const half = size / 2;
 
     return (
         <motion.div
-            className={`${className}`}
+            className={`inline-block ${className}`}
             style={{
                 width: size,
                 height: size,
-                perspective: '800px',
+                perspective: '400px',
+                verticalAlign: 'super',
             }}
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [-2, 2, -2] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
             <motion.div
                 style={{
@@ -33,93 +34,83 @@ export function RotatingCube({ size = 200, className = '' }: RotatingCubeProps) 
                     rotateY: [0, 360],
                 }}
                 transition={{
-                    duration: 20,
+                    duration: 12,
                     repeat: Infinity,
                     ease: "linear"
                 }}
             >
-                {/* Front face */}
+                {/* Cube faces with gradient colors */}
                 <div
                     style={{
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '2px solid currentColor',
-                        opacity: 0.6,
+                        border: '1.5px solid',
+                        borderColor: '#FDA303',
+                        opacity: 0.8,
                         transform: `translateZ(${half}px)`,
-                        borderRadius: '4px',
+                        borderRadius: '2px',
                     }}
-                    className="text-foreground"
                 />
-
-                {/* Back face */}
                 <div
                     style={{
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '2px solid currentColor',
-                        opacity: 0.4,
+                        border: '1.5px solid',
+                        borderColor: '#ED2D4C',
+                        opacity: 0.6,
                         transform: `rotateY(180deg) translateZ(${half}px)`,
-                        borderRadius: '4px',
+                        borderRadius: '2px',
                     }}
-                    className="text-foreground"
                 />
-
-                {/* Right face */}
                 <div
                     style={{
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '2px solid currentColor',
-                        opacity: 0.5,
+                        border: '1.5px solid',
+                        borderColor: '#178EC5',
+                        opacity: 0.7,
                         transform: `rotateY(90deg) translateZ(${half}px)`,
-                        borderRadius: '4px',
+                        borderRadius: '2px',
                     }}
-                    className="text-foreground"
                 />
-
-                {/* Left face */}
                 <div
                     style={{
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '2px solid currentColor',
-                        opacity: 0.5,
+                        border: '1.5px solid',
+                        borderColor: '#178EC5',
+                        opacity: 0.7,
                         transform: `rotateY(-90deg) translateZ(${half}px)`,
-                        borderRadius: '4px',
+                        borderRadius: '2px',
                     }}
-                    className="text-foreground"
                 />
-
-                {/* Top face */}
                 <div
                     style={{
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '2px solid currentColor',
-                        opacity: 0.5,
+                        border: '1.5px solid',
+                        borderColor: '#FDA303',
+                        opacity: 0.7,
                         transform: `rotateX(90deg) translateZ(${half}px)`,
-                        borderRadius: '4px',
+                        borderRadius: '2px',
                     }}
-                    className="text-foreground"
                 />
-
-                {/* Bottom face */}
                 <div
                     style={{
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
-                        border: '2px solid currentColor',
-                        opacity: 0.5,
+                        border: '1.5px solid',
+                        borderColor: '#ED2D4C',
+                        opacity: 0.7,
                         transform: `rotateX(-90deg) translateZ(${half}px)`,
-                        borderRadius: '4px',
+                        borderRadius: '2px',
                     }}
-                    className="text-foreground"
                 />
             </motion.div>
         </motion.div>

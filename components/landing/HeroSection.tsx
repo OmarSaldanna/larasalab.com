@@ -6,16 +6,6 @@ import { RotatingCube } from '@/components/ui/RotatingCube';
 export function HeroSection() {
     return (
         <section className="relative min-h-screen flex items-center justify-center px-8 md:px-16 lg:px-24 overflow-hidden">
-            {/* Rotating Cube - positioned top-right as per user request */}
-            <motion.div
-                className="absolute top-24 right-16 md:right-24 lg:right-32"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
-            >
-                <RotatingCube size={220} />
-            </motion.div>
-
             <div className="max-w-5xl w-full flex flex-col items-center md:items-start gap-8">
                 {/* Text content */}
                 <motion.div
@@ -24,8 +14,9 @@ export function HeroSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
+                    {/* Title with cube as superscript */}
                     <motion.h1
-                        className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight flex items-start justify-center md:justify-start gap-2"
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
@@ -33,6 +24,7 @@ export function HeroSection() {
                         <span className="bg-gradient-to-r from-amber via-pink to-blue bg-clip-text text-transparent">
                             larasalab
                         </span>
+                        <RotatingCube size={36} className="mt-1" />
                     </motion.h1>
 
                     <motion.p
