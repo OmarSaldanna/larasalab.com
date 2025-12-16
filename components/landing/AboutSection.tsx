@@ -46,13 +46,12 @@ export function AboutSection() {
 
                         <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                             {['Machine Learning', 'Python', 'Kubernetes', 'n8n', 'LangChain'].map((skill) => (
-                                <motion.span
+                                <span
                                     key={skill}
                                     className="px-3 py-1 rounded-full text-sm bg-muted text-muted-foreground"
-                                    whileHover={{ scale: 1.05, backgroundColor: 'var(--color-amber)', color: 'var(--color-black)' }}
                                 >
                                     {skill}
-                                </motion.span>
+                                </span>
                             ))}
                         </div>
                     </div>

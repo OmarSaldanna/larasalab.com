@@ -26,8 +26,8 @@ export function OngoingProjectsSection({ projects }: OngoingProjectsSectionProps
                     Ongoing <span className="text-blue">Projects</span>
                 </motion.h2>
 
-                <div className="overflow-x-auto pb-4 -mx-8 px-8">
-                    <div className="flex gap-6 min-w-max">
+                <div className="overflow-x-auto overflow-y-visible pb-4 pt-4 -mx-8 px-8">
+                    <div className="flex gap-6 min-w-max justify-center">
                         {projects.map((project, index) => (
                             <motion.div
                                 key={project.id}

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Mail } from 'lucide-react';
+import { Github, Mail, Linkedin } from 'lucide-react';
 import { DiagonalSection } from '@/components/ui/DiagonalSection';
 
 // Kaggle icon SVG
@@ -33,6 +33,13 @@ const links = [
         description: 'View my notebooks',
     },
     {
+        icon: Linkedin,
+        label: 'LinkedIn',
+        href: 'https://linkedin.com',
+        color: 'hover:text-blue',
+        description: 'Connect with me',
+    },
+    {
         icon: Mail,
         label: 'Email',
         href: 'mailto:hello@larasalab.com',
@@ -59,7 +66,7 @@ export function LinksSection() {
                     Let&apos;s <span className="text-pink">Connect</span>
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     {links.map((link, index) => {
                         const Icon = link.icon;
                         return (
