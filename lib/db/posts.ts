@@ -4,6 +4,8 @@ import type { Post, ContentBlock } from '@/lib/types';
 interface PostRow {
     id: number;
     created_at: string;
+    updated_at: string;
+    tags: string[];
     title: string;
     type: string;
     status: string;
@@ -11,13 +13,30 @@ interface PostRow {
 }
 
 function mapRowToPost(row: PostRow): Post {
+    // Handle content - it might come as a string from PostgreSQL JSONB
+    let parsedContent: ContentBlock[] = [];
+    if (row.content) {
+        if (typeof row.content === 'string') {
+            try {
+                parsedContent = JSON.parse(row.content);
+            } catch (e) {
+                console.error('Failed to parse content JSON:', e);
+                parsedContent = [];
+            }
+        } else if (Array.isArray(row.content)) {
+            parsedContent = row.content;
+        }
+    }
+
     return {
         id: row.id,
         created_at: new Date(row.created_at),
+        updated_at: new Date(row.updated_at),
+        tags: row.tags || [],
         title: row.title,
         type: row.type as Post['type'],
         status: row.status as Post['status'],
-        content: row.content,
+        content: parsedContent,
     };
 }
 
@@ -26,7 +45,7 @@ function mapRowToPost(row: PostRow): Post {
  */
 export async function getActiveIdeas(limit = 3): Promise<Post[]> {
     const rows = await query<PostRow>(
-        `SELECT id, created_at, title, type, status, content 
+        `SELECT id, created_at, updated_at, tags, title, type, status, content 
      FROM posts 
      WHERE type = 'idea'
      ORDER BY created_at DESC 
@@ -41,7 +60,7 @@ export async function getActiveIdeas(limit = 3): Promise<Post[]> {
  */
 export async function getActiveProjects(limit = 3): Promise<Post[]> {
     const rows = await query<PostRow>(
-        `SELECT id, created_at, title, type, status, content 
+        `SELECT id, created_at, updated_at, tags, title, type, status, content 
      FROM posts 
      WHERE type = 'project'
      ORDER BY created_at DESC 
@@ -56,7 +75,7 @@ export async function getActiveProjects(limit = 3): Promise<Post[]> {
  */
 export async function getOngoingProjects(): Promise<Post[]> {
     const rows = await query<PostRow>(
-        `SELECT id, created_at, title, type, status, content 
+        `SELECT id, created_at, updated_at, tags, title, type, status, content 
      FROM posts 
      WHERE type = 'project' AND status = 'active'
      ORDER BY created_at DESC`
@@ -69,7 +88,7 @@ export async function getOngoingProjects(): Promise<Post[]> {
  */
 export async function getPostById(id: number): Promise<Post | null> {
     const rows = await query<PostRow>(
-        `SELECT id, created_at, title, type, status, content 
+        `SELECT id, created_at, updated_at, tags, title, type, status, content 
      FROM posts 
      WHERE id = $1`,
         [id]
@@ -87,7 +106,7 @@ export async function getPostById(id: number): Promise<Post | null> {
  */
 export async function getAllIdeas(): Promise<Post[]> {
     const rows = await query<PostRow>(
-        `SELECT id, created_at, title, type, status, content 
+        `SELECT id, created_at, updated_at, tags, title, type, status, content 
      FROM posts 
      WHERE type = 'idea' AND status = 'active'
      ORDER BY created_at DESC`
@@ -100,7 +119,7 @@ export async function getAllIdeas(): Promise<Post[]> {
  */
 export async function getAllProjects(): Promise<Post[]> {
     const rows = await query<PostRow>(
-        `SELECT id, created_at, title, type, status, content 
+        `SELECT id, created_at, updated_at, tags, title, type, status, content 
      FROM posts 
      WHERE type = 'project' AND status = 'active'
      ORDER BY created_at DESC`

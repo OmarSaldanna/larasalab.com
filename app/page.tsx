@@ -11,15 +11,15 @@ import { getActiveIdeas, getActiveProjects, getOngoingProjects } from '@/lib/db/
 
 // Mock data for development when database is not connected
 const mockProjects = [
-  { id: 1, created_at: new Date(), title: 'AI Content Generator', type: 'project' as const, status: 'active' as const, content: [] },
-  { id: 2, created_at: new Date(), title: 'Cloud Deployment Pipeline', type: 'project' as const, status: 'active' as const, content: [] },
-  { id: 3, created_at: new Date(), title: 'Workflow Automation Engine', type: 'project' as const, status: 'active' as const, content: [] },
+  { id: 1, created_at: new Date(), updated_at: new Date(), tags: [], title: 'AI Content Generator', type: 'project' as const, status: 'active' as const, content: [] },
+  { id: 2, created_at: new Date(), updated_at: new Date(), tags: [], title: 'Cloud Deployment Pipeline', type: 'project' as const, status: 'active' as const, content: [] },
+  { id: 3, created_at: new Date(), updated_at: new Date(), tags: [], title: 'Workflow Automation Engine', type: 'project' as const, status: 'active' as const, content: [] },
 ];
 
 const mockIdeas = [
-  { id: 4, created_at: new Date(), title: 'Neural Architecture Search', type: 'idea' as const, status: 'active' as const, content: [] },
-  { id: 5, created_at: new Date(), title: 'Self-Healing Infrastructure', type: 'idea' as const, status: 'active' as const, content: [] },
-  { id: 6, created_at: new Date(), title: 'Emotion-Aware AI Assistant', type: 'idea' as const, status: 'active' as const, content: [] },
+  { id: 4, created_at: new Date(), updated_at: new Date(), tags: [], title: 'Neural Architecture Search', type: 'idea' as const, status: 'active' as const, content: [] },
+  { id: 5, created_at: new Date(), updated_at: new Date(), tags: [], title: 'Self-Healing Infrastructure', type: 'idea' as const, status: 'active' as const, content: [] },
+  { id: 6, created_at: new Date(), updated_at: new Date(), tags: [], title: 'Emotion-Aware AI Assistant', type: 'idea' as const, status: 'active' as const, content: [] },
 ];
 
 async function getPageData() {

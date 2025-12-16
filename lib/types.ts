@@ -2,7 +2,7 @@ export type PostType = 'idea' | 'project' | 'resource';
 export type PostStatus = 'pending' | 'active' | 'finished' | 'archived';
 
 export interface ContentBlock {
-    type: 'text' | 'code' | 'image' | 'url' | 'quote' | 'list';
+    type: 'text' | 'code' | 'image' | 'url' | 'quote' | 'list' | 'subtitle';
     details?: string;
     content: string;
 }
@@ -10,6 +10,8 @@ export interface ContentBlock {
 export interface Post {
     id: number;
     created_at: Date;
+    updated_at: Date;
+    tags: string[];
     title: string;
     type: PostType;
     status: PostStatus;

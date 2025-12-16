@@ -9,6 +9,8 @@ import type { ContentBlock } from '@/lib/types';
 const mockProject = {
     id: 1,
     created_at: new Date(),
+    updated_at: new Date(),
+    tags: ['Kubernetes', 'AI', 'Cloud Native', 'LLM'],
     title: 'AI-Powered Content Generation Pipeline',
     type: 'project' as const,
     status: 'active' as const,
@@ -18,8 +20,12 @@ const mockProject = {
             content: 'A production-ready pipeline for generating, validating, and publishing AI-generated content at scale. Built with modern cloud-native principles and designed for reliability.',
         },
         {
+            type: 'subtitle' as const,
+            content: 'Architecture Overview',
+        },
+        {
             type: 'text' as const,
-            content: '## Architecture Overview\n\nThe system consists of three main components:\n\n- **Input Queue**: Receives content requests via API or scheduled jobs\n- **Generation Workers**: Kubernetes pods running LLM inference\n- **Validation Layer**: Quality checks and human-in-the-loop review',
+            content: 'The system consists of three main components:\n\n- **Input Queue**: Receives content requests via API or scheduled jobs\n- **Generation Workers**: Kubernetes pods running LLM inference\n- **Validation Layer**: Quality checks and human-in-the-loop review',
         },
         {
             type: 'code' as const,
@@ -49,8 +55,12 @@ spec:
             details: 'View source code on GitHub',
         },
         {
+            type: 'subtitle' as const,
+            content: 'Current Status',
+        },
+        {
             type: 'text' as const,
-            content: '## Current Status\n\nThe pipeline is currently processing ~10,000 requests per day with 99.5% uptime. Next milestone: implementing streaming responses for real-time generation.',
+            content: 'The pipeline is currently processing ~10,000 requests per day with 99.5% uptime. Next milestone: implementing streaming responses for real-time generation.',
         },
     ] as ContentBlock[],
 };
@@ -121,24 +131,43 @@ export default async function ProjectPage({ params }: PageProps) {
                         {project.title}
                     </h1>
 
-                    <time className="text-muted-foreground">
-                        Started {new Date(project.created_at).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                        })}
-                    </time>
+                    {/* Tags */}
+                    {project.tags && project.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {project.tags.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className="px-2 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                        <time>
+                            Started {new Date(project.created_at).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                            })}
+                        </time>
+                        {project.updated_at && new Date(project.updated_at).getTime() !== new Date(project.created_at).getTime() && (
+                            <time>
+                                • Updated {new Date(project.updated_at).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                })}
+                            </time>
+                        )}
+                    </div>
                 </header>
 
                 {/* Technical divider */}
-                <div className="mb-12 flex items-center gap-4">
-                    <div className="flex-1 h-px bg-gradient-to-r from-blue/50 to-transparent" />
-                    <div className="flex gap-1">
-                        <span className="w-2 h-2 rounded-full bg-blue animate-pulse" />
-                        <span className="w-2 h-2 rounded-full bg-blue/60" />
-                        <span className="w-2 h-2 rounded-full bg-blue/30" />
-                    </div>
-                    <div className="flex-1 h-px bg-gradient-to-l from-blue/50 to-transparent" />
+                <div className="mb-12">
+                    <div className="h-px bg-gradient-to-r from-transparent via-blue/50 to-transparent" />
                 </div>
 
                 {/* Content blocks */}

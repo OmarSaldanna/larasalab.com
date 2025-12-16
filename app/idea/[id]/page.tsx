@@ -9,6 +9,8 @@ import type { ContentBlock } from '@/lib/types';
 const mockIdea = {
     id: 1,
     created_at: new Date(),
+    updated_at: new Date(),
+    tags: ['AI', 'Edge Computing', 'Neural Networks'],
     title: 'Neural Architecture Search for Edge Devices',
     type: 'idea' as const,
     status: 'active' as const,
@@ -16,6 +18,10 @@ const mockIdea = {
         {
             type: 'text' as const,
             content: 'What if we could automatically design neural networks that run efficiently on edge devices? This idea explores using evolutionary algorithms to discover compact yet powerful architectures.',
+        },
+        {
+            type: 'subtitle' as const,
+            content: 'The Evolution Approach',
         },
         {
             type: 'quote' as const,
@@ -93,14 +99,38 @@ export default async function IdeaPage({ params }: PageProps) {
                         {idea.title}
                     </h1>
 
-                    <time className="text-muted-foreground">
-                        {new Date(idea.created_at).toLocaleDateString('en-US', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                        })}
-                    </time>
+                    {/* Tags */}
+                    {idea.tags && idea.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-4">
+                            {idea.tags.map((tag, index) => (
+                                <span
+                                    key={index}
+                                    className="px-2 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
+                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                        <time>
+                            Created {new Date(idea.created_at).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                            })}
+                        </time>
+                        {idea.updated_at && new Date(idea.updated_at).getTime() !== new Date(idea.created_at).getTime() && (
+                            <time>
+                                • Updated {new Date(idea.updated_at).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                })}
+                            </time>
+                        )}
+                    </div>
                 </header>
 
                 {/* Decorative divider */}

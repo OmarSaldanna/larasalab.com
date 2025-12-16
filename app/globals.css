@@ -17,6 +17,7 @@
   --muted: #F5EDD8;
   --muted-foreground: #6B6B7B;
   --border: rgba(5, 5, 27, 0.1);
+  --code-block-bg: #FFFFFF;
 
   /* Circuit colors */
   --circuit-line: rgba(5, 5, 27, 0.08);
@@ -33,6 +34,7 @@
   --muted: #1A1A45;
   --muted-foreground: #9B9BAB;
   --border: rgba(255, 245, 223, 0.1);
+  --code-block-bg: #030310;
 
   /* Circuit colors (dark mode) */
   --circuit-line: rgba(255, 245, 223, 0.06);
@@ -146,4 +148,103 @@ html {
 html::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, Opera */
+}
+
+/* ===== Syntax Highlighting (Theme-Aware) ===== */
+/* Light mode syntax colors */
+.hljs {
+  color: #24292e;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #d73a49;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #032f62;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #6a737d;
+}
+
+.hljs-function .hljs-keyword,
+.hljs-class .hljs-keyword {
+  color: #6f42c1;
+}
+
+.hljs-number,
+.hljs-regexp,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #005cc5;
+}
+
+.hljs-variable,
+.hljs-params {
+  color: #e36209;
+}
+
+/* Dark mode syntax colors */
+.dark .hljs {
+  color: #e6edf3;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-built_in,
+.dark .hljs-name,
+.dark .hljs-tag {
+  color: #ff7b72;
+}
+
+.dark .hljs-string,
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-attribute,
+.dark .hljs-literal,
+.dark .hljs-template-tag,
+.dark .hljs-template-variable,
+.dark .hljs-type,
+.dark .hljs-addition {
+  color: #a5d6ff;
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote,
+.dark .hljs-deletion,
+.dark .hljs-meta {
+  color: #8b949e;
+}
+
+.dark .hljs-function .hljs-keyword,
+.dark .hljs-class .hljs-keyword {
+  color: #d2a8ff;
+}
+
+.dark .hljs-number,
+.dark .hljs-regexp,
+.dark .hljs-selector-id,
+.dark .hljs-selector-class {
+  color: #79c0ff;
+}
+
+.dark .hljs-variable,
+.dark .hljs-params {
+  color: #ffa657;
 }
