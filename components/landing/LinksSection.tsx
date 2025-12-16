@@ -92,7 +92,7 @@ export function LinksSection() {
                     transition={{ delay: 0.3 }}
                 >
                     <p className="text-sm text-muted-foreground">
-                        © {new Date().getFullYear()} larasalab. Built with curiosity and coffee.
+                        © {new Date().getFullYear()} larasalab. Built with creativity, love and Antigravity.
                     </p>
                 </motion.div>
             </div>
