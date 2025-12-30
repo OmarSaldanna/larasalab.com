@@ -33,7 +33,7 @@ export function HeroSection() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        A place to share ideas and projects. Where thoughts become circuits and projects light up.
+                        A place where I share ideas, projects, thoughts, and sketches. Hoping they bring something valuable to you.
                     </motion.p>
 
                     <motion.div
@@ -52,7 +52,7 @@ export function HeroSection() {
                         </div>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <span className="w-2 h-2 rounded-full bg-pink" />
-                            <span>Cloud Development</span>
+                            <span>Full Stack</span>
                         </div>
                     </motion.div>
                 </motion.div>

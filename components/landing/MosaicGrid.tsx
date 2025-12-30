@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Brain, Cog, Cloud } from 'lucide-react';
+import { Brain, Cog, PackageOpen } from 'lucide-react';
 import type { Post } from '@/lib/types';
 
 interface MosaicGridProps {
@@ -13,7 +13,7 @@ interface MosaicGridProps {
 const DIAGONAL_ITEMS = [
     { icon: Brain, label: 'Generative AI', color: 'amber' },
     { icon: Cog, label: 'Automatization', color: 'pink' },
-    { icon: Cloud, label: 'Cloud Development', color: 'blue' },
+    { icon: PackageOpen, label: 'Full Stack', color: 'blue' },
 ];
 
 const PROJECT_POSITIONS = [[0, 1], [0, 2], [1, 2]];

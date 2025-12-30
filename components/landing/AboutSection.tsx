@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { DiagonalSection } from '@/components/ui/DiagonalSection';
 
 export function AboutSection() {
@@ -25,10 +26,14 @@ export function AboutSection() {
                         whileHover={{ scale: 1.05, rotate: 5 }}
                         transition={{ type: 'spring', stiffness: 300 }}
                     >
-                        <div className="w-full h-full rounded-full bg-surface flex items-center justify-center">
-                            <span className="text-4xl font-bold bg-gradient-to-r from-amber to-blue bg-clip-text text-transparent">
-                                OL
-                            </span>
+                        <div className="w-full h-full rounded-full bg-surface flex items-center justify-center overflow-hidden">
+                            <Image
+                                src="https://res.cloudinary.com/dddfztayk/image/upload/v1767116414/e1okf4qihkap3lzzq27h.png"
+                                alt="Omar L"
+                                width={192}
+                                height={192}
+                                className="w-full h-full object-cover"
+                            />
                         </div>
                     </motion.div>
 
@@ -40,12 +45,13 @@ export function AboutSection() {
 
                         <p className="text-muted-foreground text-lg leading-relaxed mb-6">
                             I&apos;m a developer passionate about building intelligent systems
-                            and automating workflows. I explore the intersection of AI, cloud
-                            infrastructure, and creative problem-solving.
+                            and automating processes, where I see something that can progressively grow
+                            as an ecosystem. I have fun exploring the intersection of AI, cloud infrastructure,
+                            and creative problem-solving.
                         </p>
 
                         <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                            {['Machine Learning', 'Python', 'Kubernetes', 'n8n', 'LangChain'].map((skill) => (
+                            {['Machine Learning', 'Automation', 'n8n', 'Generative AI', 'Data Science', 'Full Stack'].map((skill) => (
                                 <span
                                     key={skill}
                                     className="px-3 py-1 rounded-full text-sm bg-muted text-muted-foreground"
