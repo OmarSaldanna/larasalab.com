@@ -9,6 +9,8 @@ import { CircuitBackground } from '@/components/ui/CircuitBackground';
 import { DiagonalSection } from '@/components/ui/DiagonalSection';
 import { getActiveIdeas, getActiveProjects, getOngoingProjects } from '@/lib/db/posts';
 
+export const dynamic = 'force-dynamic';
+
 // Mock data for development when database is not connected
 const mockProjects = [
   { id: 1, created_at: new Date(), updated_at: new Date(), tags: [], title: 'AI Content Generator', type: 'project' as const, status: 'active' as const, content: [] },
